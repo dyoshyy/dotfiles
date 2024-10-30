@@ -3,6 +3,7 @@ local plugins = {
     'nvim-treesitter/nvim-treesitter',
     event = { 'BufNewFile', 'BufReadPre' },
     config = function() require 'extensions.nvim-treesitter' end, 
+    build=":TSUpdate",
   },
   {
     'rmehri01/onenord.nvim',
@@ -41,7 +42,7 @@ local plugins = {
     },
   },
   {
-        "nvim-neo-tree/neo-tree.nvim",
+    "nvim-neo-tree/neo-tree.nvim",
     branch = "v3.x",
     dependencies = {
         "nvim-lua/plenary.nvim",
@@ -59,6 +60,29 @@ local plugins = {
        "nvim-telescope/telescope.nvim", -- For picking b/w different remote methods
    },
    config = true,
+  },
+  {
+    "williamboman/mason.nvim",
+    build = ":MasonUpdate",
+    opts = {},
+  },
+  {
+    "williamboman/mason-lspconfig.nvim",
+    dependencies = {
+      { "williamboman/mason.nvim" },
+      { "neovim/nvim-lspconfig" },
+      { "echasnovski/mini.completion", version = false },
+    },
+    config = function() require 'extensions.lspconfig' end,
+  },
+  {
+    'nvim-lualine/lualine.nvim',
+    dependencies = {
+      'nvim-tree/nvim-web-devicons',
+    },
+    config = function()
+      require('extensions.lualine')
+    end,
   },
 }
 local opts = {

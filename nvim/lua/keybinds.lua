@@ -25,3 +25,13 @@ vim.keymap.set('n', '<Tab>', ':bnext<CR>')
 vim.keymap.set('n', '<S-Tab>', ':bprev<CR>')
 
 vim.keymap.set('n', '<C-n>', ':Neotree filesystem reveal left<CR>')
+
+-- Ctrl+Tabで次のタブへ
+vim.api.nvim_set_keymap('n', '<C-Tab>', ':tabnext<CR>', { noremap = true, silent = true })
+-- Ctrl+Shift+Tabで前のタブへ
+vim.api.nvim_set_keymap('n', '<C-S-Tab>', ':tabprevious<CR>', { noremap = true, silent = true })
+-- 新しいタブを作成 (Ctrl+T)
+vim.api.nvim_set_keymap('n', '<C-t>', ':tabnew<CR>', { noremap = true, silent = true })
+-- 現在のタブを閉じる (Ctrl+W)
+vim.api.nvim_set_keymap('n', '<C-w>', ':tabclose<CR>', { noremap = true, silent = true })
+

@@ -3,7 +3,7 @@ require('nvim-treesitter.configs').setup {
     'bash', 'comment', 'css', 'csv', 'dockerfile', 'go', 'graphql', 'html', 'javascript', 'jsdoc', 'json', 'lua', 'markdown', 'mermaid', 'prisma',
     'python', 'ruby', 'rust', 'sql', 'ssh_config', 'tsx', 'typescript', 'vim', 'vimdoc',
   },
-  syc_install = true,
+  syc_install = false,
   auto_install = true,
 
   highlight = {
