@@ -23,3 +23,5 @@ vim.keymap.set('n', '<leader>l', '<C-w><C-l>')
 -- buffer
 vim.keymap.set('n', '<Tab>', ':bnext<CR>')
 vim.keymap.set('n', '<S-Tab>', ':bprev<CR>')
+
+vim.keymap.set('n', '<C-n>', ':Neotree filesystem reveal left<CR>')
