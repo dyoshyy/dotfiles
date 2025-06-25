@@ -10,7 +10,7 @@ First, clone this repository as a `bare` repository into a directory named `.dot
 
 ```bash
 # Using SSH (Recommended)
-git clone --bare git@github.com:your-username/dotfiles.git $HOME/.dotfiles
+git clone --bare git@github.com:dyoshyy/dotfiles.git $HOME/.dotfiles
 
 # Using HTTPS
 # git clone --bare https://github.com/your-username/dotfiles.git $HOME/.dotfiles
