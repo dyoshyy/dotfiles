@@ -2,6 +2,7 @@ import "root:/modules/common"
 import "root:/modules/common/widgets"
 import QtQuick
 import QtQuick.Layouts
+import QtQuick.Effects
 import Quickshell
 import Quickshell.Io
 
@@ -21,18 +22,36 @@ Item {
 
         CircularProgress {
             Layout.alignment: Qt.AlignVCenter
-            lineWidth: 2
+            lineWidth: 3
             value: percentage
-            size: 26
-            secondaryColor: Appearance.colors.colSecondaryContainer
-            primaryColor: Appearance.m3colors.m3onSecondaryContainer
+            size: 30
+            secondaryColor: Qt.rgba(1, 1, 1, 0.1)
+            primaryColor: {
+                // アイコン名に基づいて色を変更（CPUかメモリか）
+                if (iconName.includes("cpu") || iconName.includes("processor")) {
+                    return "#2196F3"  // 青色 (CPU)
+                } else if (iconName.includes("memory") || iconName.includes("ram")) {
+                    return "#9C27B0"  // 紫色 (メモリ)
+                } else {
+                    return "#4CAF50"  // 緑色 (その他)
+                }
+            }
+
+            // グラデーション効果のための追加のプロパティ
+            Rectangle {
+                anchors.fill: parent
+                radius: parent.size / 2
+                color: "transparent"
+                border.width: 1
+                border.color: Qt.rgba(1, 1, 1, 0.2)
+            }
 
             MaterialSymbol {
                 anchors.centerIn: parent
                 fill: 1
                 text: iconName
                 iconSize: Appearance.font.pixelSize.normal
-                color: Appearance.m3colors.m3onSecondaryContainer
+                color: parent.primaryColor
             }
 
         }
