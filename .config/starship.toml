@@ -81,10 +81,10 @@ show_always = true
 [directory]
 home_symbol = "  "
 read_only = "  "
-style = "bg:green fg:black"
+style = "bg:blue fg:black"
 truncation_length = 6
 truncation_symbol = " ••/"
-format = '[](bold fg:green)[󰉋 $path]($style)[](bold fg:green)'
+format = '[](bold fg:blue)[󰉋 $path]($style)[](bold fg:blue)'
 
 
 [directory.substitutions]
@@ -98,4 +98,4 @@ format = '[](bold fg:green)[󰉋 $path]($style)[](bold fg:green)'
 
 [cmd_duration]
 min_time = 0
-format = '[](bold fg:yellow)[󰪢 $duration](bold bg:yellow fg:black)[](bold fg:yellow)'
+format = '[](bold fg:bright-blue)[󰪢 $duration](bold bg:bright-blue fg:black)[](bold fg:bright-blue)'
