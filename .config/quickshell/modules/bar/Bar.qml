@@ -233,7 +233,7 @@ Scope {
 
                     BarGroup {
                         id: leftCenterGroup
-                        Layout.preferredWidth: barRoot.centerSideModuleWidth
+                        Layout.preferredWidth: barRoot.centerSideModuleWidth * 0.8  // 20%縮小
                         Layout.fillHeight: true
 
                         Resources {

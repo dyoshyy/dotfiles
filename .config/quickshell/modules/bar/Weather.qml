@@ -76,11 +76,11 @@ Item {
 
         StyledText {
             text: weather.icon
-            font.pixelSize: Appearance.font.pixelSize.large * 2.0  // 1.5倍のサイズ
+            font.pixelSize: Appearance.font.pixelSize.large * 1.2
         }
         StyledText {
             text: weather.temp + "°C"
-            font.pixelSize: Appearance.font.pixelSize.large
+            font.pixelSize: Appearance.font.pixelSize.normal
         }
     }
 }

@@ -12,37 +12,49 @@ Item {
     property bool borderless: Config.options.bar.borderless
     property bool alwaysShowAllResources: false
     implicitWidth: rowLayout.implicitWidth + rowLayout.anchors.leftMargin + rowLayout.anchors.rightMargin
-    implicitHeight: 32
+    implicitHeight: 28
 
     RowLayout {
         id: rowLayout
 
-        spacing: 0
+        spacing: 6
         anchors.fill: parent
-        anchors.leftMargin: 4
-        anchors.rightMargin: 4
+        anchors.leftMargin: 6
+        anchors.rightMargin: 6
 
-        Resource {
-            iconName: "memory"
-            percentage: ResourceUsage.memoryUsedPercentage
-        }
-
-        Resource {
-            iconName: "swap_horiz"
-            percentage: ResourceUsage.swapUsedPercentage
-            shown: (Config.options.bar.resources.alwaysShowSwap && percentage > 0) || 
-                (MprisController.activePlayer?.trackTitle == null) ||
-                root.alwaysShowAllResources
-            Layout.leftMargin: shown ? 4 : 0
-        }
-
+        // CPU リソース
         Resource {
             iconName: "settings_slow_motion"
             percentage: ResourceUsage.cpuUsage
+            resourceName: "CPU"
             shown: Config.options.bar.resources.alwaysShowCpu || 
                 !(MprisController.activePlayer?.trackTitle?.length > 0) ||
                 root.alwaysShowAllResources
-            Layout.leftMargin: shown ? 4 : 0
+        }
+
+        // GPU リソース
+        Resource {
+            iconName: "developer_board"
+            percentage: ResourceUsage.gpuUsage
+            resourceName: "GPU"
+            shown: ResourceUsage.gpuUsage > 0 || root.alwaysShowAllResources
+        }
+
+        // メモリリソース
+        Resource {
+            iconName: "memory"
+            percentage: ResourceUsage.memoryUsedPercentage
+            resourceName: "RAM"
+        }
+
+        // スワップリソース
+        Resource {
+            iconName: "swap_horiz"
+            percentage: ResourceUsage.swapUsedPercentage
+            resourceName: "SWAP"
+            shown: (Config.options.bar.resources.alwaysShowSwap && percentage > 0) || 
+                (MprisController.activePlayer?.trackTitle == null) ||
+                root.alwaysShowAllResources
         }
 
     }
