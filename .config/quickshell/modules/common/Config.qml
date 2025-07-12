@@ -81,7 +81,7 @@ Singleton {
             }
 
             property JsonObject apps: JsonObject {
-                property string bluetooth: "kcmshell6 kcm_bluetooth"
+                property string bluetooth: "blueman-manager"
                 property string network: "plasmawindowed org.kde.plasma.networkmanagement"
                 property string networkEthernet: "kcmshell6 kcm_networkmanagement"
                 property string taskManager: "plasma-systemmonitor --page-name Processes"
@@ -134,10 +134,10 @@ Singleton {
             property JsonObject dock: JsonObject {
                 property real height: 60
                 property real hoverRegionHeight: 3
-                property bool pinnedOnStartup: false
-                property bool hoverToReveal: false // When false, only reveals on empty workspace
+                property bool pinnedOnStartup: true
+                property bool hoverToReveal: true // When false, only reveals on empty workspace
                 property list<string> pinnedApps: [ // IDs of pinned entries
-                    "org.kde.dolphin", "kitty",]
+                    "kitty",]
             }
 
             property JsonObject language: JsonObject {

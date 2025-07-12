@@ -9,6 +9,7 @@ RippleButton {
     Layout.fillHeight: true
     Layout.topMargin: Appearance.sizes.elevationMargin - Appearance.sizes.hyprlandGapsOut
     implicitWidth: implicitHeight - topInset - bottomInset
+    implicitHeight: 60 // Set minimum height for dock buttons
     buttonRadius: Appearance.rounding.normal
 
     topInset: Appearance.sizes.hyprlandGapsOut + dockRow.padding
