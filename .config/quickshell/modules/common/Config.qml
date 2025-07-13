@@ -81,7 +81,7 @@ Singleton {
             }
 
             property JsonObject apps: JsonObject {
-                property string bluetooth: "blueman-manager"
+                property string bluetooth: "fish blueman-manager"
                 property string network: "plasmawindowed org.kde.plasma.networkmanagement"
                 property string networkEthernet: "kcmshell6 kcm_networkmanagement"
                 property string taskManager: "plasma-systemmonitor --page-name Processes"

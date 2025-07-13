@@ -1,29 +1,49 @@
 #!/bin/bash
 
-# wttr.inから札幌の天気をJSON形式で取得
-WEATHER_DATA=$(curl -s "https://wttr.in/Sapporo?format=j1")
+# wttr.in - シンプルな天気API（登録不要）
+CITY="Sapporo"
 
-# JSONデータから現在の天気の状況と気温を抽出
-# jqコマンドが必要になります
-CURRENT_CONDITION=$(echo $WEATHER_DATA | jq -r '.current_condition[0]')
-TEMP_C=$(echo $CURRENT_CONDITION | jq -r '.temp_C')
-WEATHER_DESC=$(echo $CURRENT_CONDITION | jq -r '.weatherDesc[0].value')
+# wttr.inから現在の天気データを取得
+WEATHER_DATA=$(curl -s "https://wttr.in/${CITY}?format=j1")
 
-# 天気コードからアイコンを決定する
-WEATHER_CODE=$(echo $CURRENT_CONDITION | jq -r '.weatherCode')
+# エラーチェック
+if [[ -z "$WEATHER_DATA" ]]; then
+    echo '{"icon":"❌", "temp":"--", "desc":"API Error"}'
+    exit 1
+fi
 
+# データ抽出 - 現在の気温
+TEMP_C=$(echo "$WEATHER_DATA" | jq -r '.current_condition[0].temp_C // "--"')
+FEELS_LIKE=$(echo "$WEATHER_DATA" | jq -r '.current_condition[0].FeelsLikeC // "--"')
+WEATHER_DESC=$(echo "$WEATHER_DATA" | jq -r '.current_condition[0].weatherDesc[0].value // "Unknown"')
+WEATHER_CODE=$(echo "$WEATHER_DATA" | jq -r '.current_condition[0].weatherCode // "999"')
+
+# 体感温度との差が大きい場合は表示に含める
+if [[ "$FEELS_LIKE" != "--" ]] && [[ "$TEMP_C" != "--" ]]; then
+    TEMP_DIFF=$((FEELS_LIKE - TEMP_C))
+    if [[ $TEMP_DIFF -gt 3 ]] || [[ $TEMP_DIFF -lt -3 ]]; then
+        TEMP_DISPLAY="${TEMP_C}°(体感${FEELS_LIKE}°)"
+    else
+        TEMP_DISPLAY="${TEMP_C}°"
+    fi
+else
+    TEMP_DISPLAY="${TEMP_C}°"
+fi
+
+# 天気コードからアイコンを決定
 ICON="?"
 case $WEATHER_CODE in
-"113") ICON="☀️" ;; # Sunny
-"116") ICON="⛅" ;;  # Partly cloudy
-"119") ICON="☁️" ;; # Cloudy
-"122") ICON="☁️" ;; # Overcast
-"266") ICON="🌧️" ;; # Light drizzle
-"296") ICON="🌧️" ;; # Light rain
-"302") ICON="🌧️" ;; # Moderate rain
-"353") ICON="🌧️" ;; # Light rain shower
-*) ICON="?" ;;
+"113") ICON="☀️" ;;                                                                                  # Sunny
+"116") ICON="🌤️" ;;                                                                                  # Partly cloudy
+"119") ICON="☁️" ;;                                                                                  # Cloudy
+"122") ICON="☁️" ;;                                                                                  # Overcast
+"143" | "248" | "260") ICON="🌫️" ;;                                                                  # Fog
+"176" | "263" | "266" | "293" | "296" | "299" | "302" | "305" | "308" | "353") ICON="🌧️" ;;          # Light rain
+"179" | "182" | "185" | "281" | "284" | "311" | "314" | "317" | "320" | "323" | "326") ICON="��️" ;; # Rain shower
+"227" | "230" | "323" | "326" | "329" | "332" | "335" | "338" | "368" | "371") ICON="❄️" ;;          # Snow
+"200" | "386" | "389" | "392" | "395") ICON="⛈️" ;;                                                  # Thunderstorm
+*) ICON="❓" ;;
 esac
 
-# ewwが読み取れるJSON形式で出力
-echo "{\"icon\":\"$ICON\", \"temp\":\"$TEMP_C\", \"desc\":\"$WEATHER_DESC\"}"
+# QuickShell用JSON出力
+echo "{\"icon\":\"$ICON\", \"temp\":\"$TEMP_DISPLAY\", \"desc\":\"$WEATHER_DESC\"}"

@@ -113,7 +113,7 @@ Scope {
                     anchors.left: parent.left
                     implicitHeight: Appearance.sizes.baseBarHeight
                     height: Appearance.sizes.barHeight
-                    width: (barRoot.width - middleSection.width) / 2
+                    width: Math.min((barRoot.width - middleSection.width) / 2, barRoot.width * 0.25)  // 左側の最大幅を画面幅の25%に制限
                     property bool hovered: false
                     property real lastScrollX: 0
                     property real lastScrollY: 0
@@ -219,6 +219,7 @@ Scope {
                                 visible: barRoot.useShortenedForm === 0
                                 Layout.rightMargin: Appearance.rounding.screenRounding
                                 Layout.fillWidth: true
+                                Layout.maximumWidth: 300  // 最大幅を300ピクセルに制限
                                 Layout.fillHeight: true
                                 bar: barRoot
                             }
@@ -233,7 +234,7 @@ Scope {
 
                     BarGroup {
                         id: leftCenterGroup
-                        Layout.preferredWidth: barRoot.centerSideModuleWidth * 0.8  // 20%縮小
+                        Layout.preferredWidth: barRoot.centerSideModuleWidth * 1.2  // 左中央グループの幅を20%増加
                         Layout.fillHeight: true
 
                         Resources {
@@ -277,13 +278,11 @@ Scope {
                         }
                     }
 
-                    VerticalBarSeparator {visible: Config.options?.bar.borderless}
-
-                    MouseArea {
+                    VerticalBarSeparator {visible: Config.options?.bar.borderless}                        MouseArea {
                         id: rightCenterGroup
                         implicitWidth: rightCenterGroupContent.implicitWidth
                         implicitHeight: rightCenterGroupContent.implicitHeight
-                        Layout.preferredWidth: barRoot.centerSideModuleWidth
+                        Layout.preferredWidth: barRoot.centerSideModuleWidth * 1.2  // 右中央グループの幅を20%増加
                         Layout.fillHeight: true
 
                         onPressed: {
@@ -320,7 +319,7 @@ Scope {
                     anchors.right: parent.right
                     implicitHeight: Appearance.sizes.baseBarHeight
                     height: Appearance.sizes.barHeight
-                    width: (barRoot.width - middleSection.width) / 2
+                    width: Math.min((barRoot.width - middleSection.width) / 2, barRoot.width * 0.25)  // 右側の最大幅を画面幅の25%に制限
 
                     property bool hovered: false
                     property real lastScrollX: 0

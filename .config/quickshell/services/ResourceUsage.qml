@@ -55,9 +55,7 @@ Singleton {
 
                 previousCpuStats = { total, idle }
             }
-            
-            // GPU使用率の取得（nvidia-smi コマンドを使用）
-            gpuProcessNvidia.running = true
+        
             
             interval = Config.options?.resources?.updateInterval ?? 3000
         }
@@ -66,35 +64,6 @@ Singleton {
 	FileView { id: fileMeminfo; path: "/proc/meminfo" }
     FileView { id: fileStat; path: "/proc/stat" }
     
-    // GPU使用率を取得するためのプロセス
-    Process {
-        id: gpuProcessNvidia
-        command: ["nvidia-smi", "--query-gpu=utilization.gpu,memory.used,memory.total", "--format=csv,noheader,nounits"]
-        
-        stdout: SplitParser {
-            onRead: data => {
-                const lines = data.trim().split('\n')
-                if (lines.length > 0) {
-                    const values = lines[0].split(',').map(s => s.trim())
-                    if (values.length >= 3) {
-                        gpuUsage = Number(values[0]) / 100.0
-                        const memUsed = Number(values[1])
-                        const memTotal = Number(values[2])
-                        gpuMemoryUsage = memTotal > 0 ? memUsed / memTotal : 0
-                    }
-                }
-            }
-        }
-        
-        stderr: SplitParser {
-            onRead: data => {
-                // NVIDIA GPU が見つからない場合は AMD GPU を試す
-                if (data.includes("No devices")) {
-                    gpuProcessAmd.running = true
-                }
-            }
-        }
-    }
     
     // AMD GPU用のプロセス
     Process {
