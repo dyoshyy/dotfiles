@@ -1,0 +1,57 @@
+/* Catppuccin-Mocha */
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "JetBrainsMono Nerd Font", "HackGen Console NF", sans-serif;
+    font-size: 15px;
+    min-height: 0;
+}
+
+window#waybar {
+    background-color: rgba(30, 30, 46, 0.85);
+    color: #cdd6f4;
+    transition-property: background-color;
+    transition-duration: .5s;
+    border-radius: 12px;
+    border: 2px solid #313244;
+}
+
+/* 各モジュール（ピル）の共通設定 */
+#workspaces,
+#clock,
+#pulseaudio,
+#network,
+#battery,
+#tray,
+#custom-power {
+    background-color: #1e1e2e;
+    padding: 2px 14px;
+    margin: 6px 4px;
+    border-radius: 8px;
+    border: 1px solid #45475a;
+}
+
+#workspaces button {
+    padding: 0 5px;
+    background-color: transparent;
+    color: #a6adc8;
+}
+
+#workspaces button:hover {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+#workspaces button.focused {
+    background-color: #89b4fa;
+    color: #1e1e2e;
+}
+
+#clock { color: #fab387; }
+#pulseaudio { color: #89b4fa; }
+#pulseaudio.muted { color: #6c7086; }
+#network { color: #a6e3a1; }
+#network.disconnected { color: #f38ba8; }
+#battery { color: #f9e2af; }
+#battery.charging, #battery.plugged { color: #a6e3a1; }
+#custom-power { color: #f38ba8; }
+
