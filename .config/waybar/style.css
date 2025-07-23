@@ -1,22 +1,24 @@
-/* Catppuccin-Mocha */
+/* ---------- Catppuccin-Mocha Modern ---------- */
 * {
-    border: none;
-    border-radius: 0;
-    font-family: "JetBrainsMono Nerd Font", "HackGen Console NF", sans-serif;
-    font-size: 15px;
-    min-height: 0;
+	border: none;
+	border-radius: 0;
+	font-family: 'JetBrainsMono Nerd Font', 'HackGen Console NF', sans-serif;
+	font-size: 14px;
+	font-weight: 500;
+	min-height: 0;
 }
 
 window#waybar {
-    background-color: rgba(30, 30, 46, 0.85);
-    color: #cdd6f4;
-    transition-property: background-color;
-    transition-duration: .5s;
-    border-radius: 12px;
-    border: 2px solid #313244;
+	background: rgba(30, 30, 46, 0.45);
+	color: #cdd6f4;
+	border-radius: 14px;
+	margin: 8px 12px;
+	padding: 0 8px;
+	border: 1px solid rgba(180, 190, 254, 0.12);
+	box-shadow: 0 0 12px rgba(0, 0, 0, 0.25);
 }
 
-/* 各モジュール（ピル）の共通設定 */
+/* ---------- 共通ピル ---------- */
 #workspaces,
 #clock,
 #pulseaudio,
@@ -24,36 +26,98 @@ window#waybar {
 #battery,
 #tray,
 #custom-brightness,
+#custom-notification,
+#custom-cpu,
+#custom-memory,
+#playerctl,
 #custom-power {
-    background-color: #1e1e2e;
-    padding: 2px 14px;
-    margin: 6px 4px;
-    border-radius: 8px;
-    border: 1px solid #45475a;
+	background: rgba(30, 30, 46, 0.75);
+	margin: 6px 3px;
+	padding: 4px 10px;
+	border-radius: 10px;
+	transition: all 0.2s ease;
+}
+
+/* ホバーで背景を少し明るく */
+#workspaces:hover,
+#clock:hover,
+#pulseaudio:hover,
+#network:hover,
+#battery:hover,
+#custom-brightness:hover,
+#custom-notification:hover,
+#custom-cpu:hover,
+#custom-memory:hover,
+#custom-power:hover {
+	background: rgba(49, 50, 68, 0.85);
+}
+
+/* ---------- Workspaces ---------- */
+#workspaces {
+	padding: 4px 4px;
 }
 
 #workspaces button {
-    padding: 0 5px;
-    background-color: transparent;
-    color: #a6adc8;
+	padding: 4px 4px;
+	min-width: 28px;
+	margin: 0 2px;
+	border-radius: 8px;
+	color: #6c7086;
+	transition: all 0.25s ease;
 }
 
+/* 空きではない WS */
+#workspaces button.occupied {
+	color: #cdd6f4;
+}
+
+/* 現在アクティブな WS（強調） */
+#workspaces button.active {
+	background: linear-gradient(135deg, #89b4fa, #b4befe);
+	color: #11111b;
+	font-weight: 700;
+	box-shadow: 0 0 10px rgba(137, 180, 250, 0.7);
+	border: 1px solid #b4befe;
+}
+
+/* ホバー演出 */
 #workspaces button:hover {
-    background: rgba(0, 0, 0, 0.2);
+	background: rgba(137, 180, 250, 0.25);
 }
 
-#workspaces button.focused {
-    background-color: #89b4fa;
-    color: #1e1e2e;
+/* ---------- 各モジュールの色味 ---------- */
+#battery,
+#custom-brightness,
+#network,
+#playerctl,
+#pulseaudio {
+	color: #89b4fa;
+}
+#pulseaudio.muted {
+	color: #6c7086;
+	font-style: italic;
+}
+#network.disconnected {
+	color: #f38ba8;
+}
+#battery.charging,
+#battery.plugged {
+	color: #a6e3a1;
+}
+#clock,
+#custom-notification {
+	color: #cba6f7;
+}
+#custom-power,
+#custom-cpu,
+#custom-memory {
+	color: #94e2d5;
 }
 
-#clock { color: #fab387; }
-#pulseaudio { color: #89b4fa; }
-#pulseaudio.muted { color: #6c7086; }
-#network { color: #a6e3a1; }
-#network.disconnected { color: #f38ba8; }
-#battery { color: #f9e2af; }
-#battery.charging, #battery.plugged { color: #a6e3a1; }
-#custom-power { color: #f38ba8; }
-#custom-brightness { color: #f9e2af; }
-
+/* ---------- 細かい調整 ---------- */
+#tray {
+	padding: 4px 8px;
+}
+#tray > * {
+	margin: 0 2px;
+}
