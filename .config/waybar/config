@@ -6,7 +6,7 @@
 
     "modules-left": ["hyprland/workspaces", "hyprland/window"],
     "modules-center": ["clock"],
-    "modules-right": ["tray", "pulseaudio", "network", "battery", "custom/power"],
+    "modules-right": ["tray", "pulseaudio", "custom/brightness", "network", "battery", "custom/power"],
     
     "hyprland/workspaces": {
         "format": "{icon}",
@@ -39,6 +39,14 @@
         "format-icons": {
             "default": ["", ""]
         }
+    },
+    "custom/brightness": {
+        "format": "󰃠 {}",
+        "exec": "brightnessctl -m | awk -F, '{print $4}'",
+        "on-scroll-up": "brightnessctl set 5%+",
+        "on-scroll-down": "brightnessctl set 5%-",
+        "interval": 2,
+        "tooltip": true
     },
     "network": {
         "format-wifi": "  {essid}",

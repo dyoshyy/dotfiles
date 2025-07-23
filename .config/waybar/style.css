@@ -23,6 +23,7 @@ window#waybar {
 #network,
 #battery,
 #tray,
+#custom-brightness,
 #custom-power {
     background-color: #1e1e2e;
     padding: 2px 14px;
@@ -54,4 +55,5 @@ window#waybar {
 #battery { color: #f9e2af; }
 #battery.charging, #battery.plugged { color: #a6e3a1; }
 #custom-power { color: #f38ba8; }
+#custom-brightness { color: #f9e2af; }
 
