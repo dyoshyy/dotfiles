@@ -1,0 +1,122 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 40,
+    "spacing": 2,
+
+    "modules-left": ["custom/power", "hyprland/window"],
+    "modules-center": ["playerctl", "hyprland/workspaces"],
+    "modules-right": ["tray", "custom/cpu", "custom/memory", "pulseaudio", "custom/brightness", "network", "battery", "clock", "custom/notification"],
+    
+    "hyprland/workspaces": {
+        "format": "{icon}",
+        "on-click": "activate",
+        "persistent-workspaces": {
+            "1": [], "2": [], "3": [], "4": [], "5": [], "6": [], "7": []
+        },
+        "format-icons": {
+            "1": "1",
+            "2": "2",
+            "3": "3",
+            "4": "4",
+            "5": "5",
+            "6": "6"
+        }
+    },
+    "hyprland/window": {
+        "format": "{}",
+        "max-length": 40
+    },
+    "clock": {
+        "format": "{:%m/%d %I:%M %p}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+    },
+    "tray": {
+        "icon-size": 18,
+        "spacing": 5
+    },
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-muted": "󰝟 Muted",
+        "on-click": "pavucontrol",
+        "format-icons": {
+            "default": ["", ""]
+        }
+    },
+    "custom/brightness": {
+        "format": "󰃠 {}",
+        "exec": "brightnessctl -m | awk -F, '{print $4}'",
+        "on-scroll-up": "brightnessctl set 5%+",
+        "on-scroll-down": "brightnessctl set 5%-",
+        "interval": 2,
+        "tooltip": true
+    },
+    "network": {
+        "format-wifi": "  {essid}",
+        "format-ethernet": "󰈀 {ifname}",
+        "format-disconnected": "󰖪 Disconnected",
+        "on-click": "nm-connection-editor"
+    },
+    "battery": {
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "<span color='#ffffff'>󰁹</span> {capacity}%",
+        "format-charging": "<span color='#00ff00'>󰂄</span> {capacity}%",
+        "format-plugged": "<span color='#00ff00'>󰂄</span> {capacity}%",
+        "format-alt": "<span color='#ffffff'>{icon}</span> {time}",
+        "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽"],
+        "interval": 5
+    },
+    "custom/power": {
+        "format": "",
+        "on-click": "wlogout",
+        "tooltip": false
+    },
+    "custom/notification": {
+        "tooltip": false,
+        "format": "{icon}",
+        "format-icons": {
+            "notification": "<span foreground='red'><sup></sup></span>",
+            "none": "",
+            "dnd-notification": "<span foreground='red'><sup></sup></span>",
+            "dnd-none": "",
+            "inhibited-notification": "<span foreground='red'><sup></sup></span>",
+            "inhibited-none": "",
+            "dnd-inhibited-notification": "<span foreground='red'><sup></sup></span>",
+            "dnd-inhibited-none": ""
+        },
+        "return-type": "json",
+        "exec-if": "which swaync-client",
+        "exec": "swaync-client -swb",
+        "on-click": "swaync-client -t -sw",
+        "on-click-right": "swaync-client -d -sw",
+        "escape": true
+    },
+    "custom/cpu": {
+        "format": "CPU: {}%",
+        "exec": "top -bn1 | grep 'Cpu(s)' | awk '{print $2}' | sed 's/%us,//' | sed 's/,//'",
+        "interval": 2,
+        "tooltip": true
+    },
+    "custom/memory": {
+        "format": "RAM: {}%",
+        "exec": "free | awk 'NR==2{printf \"%.1f\", $3*100/$2}'",
+        "interval": 2,
+        "tooltip": true
+    },
+    "playerctl": {
+        "format": "{icon}  {artist} - {title}",
+        "format-icons": {
+            "playing": "▶",
+            "paused": "⏸",
+            "stopped": "⏹"
+        },
+        "on-click": "playerctl play-pause",
+        "on-scroll-up": "playerctl next",
+        "on-scroll-down": "playerctl previous",
+        "player": "%any",
+        "max-length": 30
+    }
+}
