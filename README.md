@@ -9,11 +9,7 @@ Follow these steps to set up this environment on a new machine.
 First, clone this repository as a `bare` repository into a directory named `.dotfiles` inside your home directory.
 
 ```bash
-# Using SSH (Recommended)
 git clone --bare git@github.com:dyoshyy/dotfiles.git $HOME/.dotfiles
-
-# Using HTTPS
-# git clone --bare https://github.com/your-username/dotfiles.git $HOME/.dotfiles
 ```
 
 ### 2\. Set Up the `config` Alias
