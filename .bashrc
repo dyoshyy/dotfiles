@@ -136,15 +136,12 @@ export TORCH_CUDA_ARCH_LIST="5.0;6.0;6.1;7.0;7.5;8.0;8.6;9.0"
 
 . "$HOME/.local/bin/env"
 
-export PATH=/home/yoshikawa/cuda-11.8/bin:$PATH
-export LD_LIBRARY_PATH=/home/yoshikawa/cuda-11.8/lib64:$LD_LIBRARY_PATH
-export CUDA_HOME=/home/yoshikawa/cuda-11.8
+export PATH=/home/yoshikawa/cuda-12.4/bin:$PATH
+export CUDA_HOME=/home/yoshikawa/cuda-12.4
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 export PATH="/home/yoshikawa/.pixi/bin:$PATH"
-
-export TF_CPP_MIN_LOG_LEVEL=2 # WARNING 以上だけ表示（= 同警告は非表示）
 
 export PATH="$HOME/.local/bin:$PATH"
 
