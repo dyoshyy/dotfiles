@@ -130,7 +130,7 @@ export PATH="/home/yoshikawa/.pixi/bin:$PATH"
 
 export PATH="$HOME/.local/bin:$PATH"
 
-alias config='/usr/bin/git --git-dir=/home/yoshikawa/.dotfiles/ --work-tree=/home/yoshikawa'
+alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/home/yoshikawa/google-cloud-sdk/path.bash.inc' ]; then . '/home/yoshikawa/google-cloud-sdk/path.bash.inc'; fi
