@@ -117,21 +117,6 @@ if [ -d /etc/profile.d ]; then
   unset i
 fi
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/yoshikawa/anaconda3/bin/conda' 'shell.bash' 'hook' 2>/dev/null)"
-if [ $? -eq 0 ]; then
-  eval "$__conda_setup"
-else
-  if [ -f "/home/yoshikawa/anaconda3/etc/profile.d/conda.sh" ]; then
-    . "/home/yoshikawa/anaconda3/etc/profile.d/conda.sh"
-  else
-    export PATH="/home/yoshikawa/anaconda3/bin:$PATH"
-  fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-
 export TORCH_CUDA_ARCH_LIST="5.0;6.0;6.1;7.0;7.5;8.0;8.6;9.0"
 
 . "$HOME/.local/bin/env"
@@ -145,7 +130,7 @@ export PATH="/home/yoshikawa/.pixi/bin:$PATH"
 
 export PATH="$HOME/.local/bin:$PATH"
 
-alias config='/usr/bin/git --git-dir=/home/yoshikawa/.dotfiles/ --work-tree=/home/yoshikawa'
+alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/home/yoshikawa/google-cloud-sdk/path.bash.inc' ]; then . '/home/yoshikawa/google-cloud-sdk/path.bash.inc'; fi
@@ -156,3 +141,6 @@ if [ -f '/home/yoshikawa/google-cloud-sdk/completion.bash.inc' ]; then . '/home/
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
+
+# starship
+eval "$(starship init bash)"

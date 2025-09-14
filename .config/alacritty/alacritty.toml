@@ -1,0 +1,28 @@
+# ~/.config/alacritty/alacritty.toml
+
+[window]
+# 背景の不透明度 (0.0が完全透明, 1.0が不透明)
+opacity = 0.50
+
+# ウィンドウの余白（パディング）
+# 左右(x)と上下(y)の余白をそれぞれ10ピクセルに設定
+padding = { x = 10, y = 10 }
+
+# Hyprlandのブラー効果を有効にする
+blur = true
+
+[font]
+# フォントサイズ
+size = 16.0
+
+[font.normal]
+family = "HackGen Console NF"
+
+[font.bold]
+family = "HackGen Console NF"
+style = "Bold"
+
+[env]
+TERM = "xterm-256color"
+
+
