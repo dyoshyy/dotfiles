@@ -11,7 +11,7 @@ add_newline = false
 # $character
 # """
 format = """
-$cmd_duration 󰜥 $directory $git_branch
+$cmd_duration$username$hostname 󰜥 $directory $env_var $git_branch
 $character
 """
 
@@ -99,3 +99,8 @@ format = '[](bold fg:blue)[󰉋 $path]($style)[](bold fg:blue)'
 [cmd_duration]
 min_time = 0
 format = '[](bold fg:bright-blue)[󰪢 $duration](bold bg:bright-blue fg:black)[](bold fg:bright-blue)'
+
+[env_var.cuda]
+variable = "CUDA_VISIBLE_DEVICES"
+symbol = "GPU:"
+format = "[](fg:yello)[$symbol($env_value)](bold bg:yellow)[](fg:yellow)"
