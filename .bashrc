@@ -144,3 +144,6 @@ export NVM_DIR="$HOME/.nvm"
 
 # starship
 eval "$(starship init bash)"
+
+export PTAH="/home/yoshikawa/texlive/2025/bin/x86_64-linux:$PATH"
+
