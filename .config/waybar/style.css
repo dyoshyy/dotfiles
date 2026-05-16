@@ -65,7 +65,17 @@ tooltip {
 
 #clock {
   margin-left: 8.75px;
-  margin-right: 16px;
+}
+
+#custom-weather {
+  margin-left: 7.5px;
+  margin-right: 7.5px;
+}
+
+#custom-weather.unavailable {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
 }
 
 .hidden {
@@ -99,12 +109,3 @@ tooltip {
 #custom-voxtype.recording {
   color: #a55555;
 }
-
-#custom-notification {
-  min-width: 12px;
-  margin-left: 7.5px;
-  margin-right: 5px;
-  font-size: 14px; /* アイコンを少し強調 */
-  padding-bottom: 1px;
-}
-
