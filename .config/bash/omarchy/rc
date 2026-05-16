@@ -1,0 +1,6 @@
+source ~/.config/bash/omarchy/envs
+source ~/.config/bash/omarchy/shell
+source ~/.config/bash/omarchy/aliases
+source ~/.config/bash/omarchy/functions
+source ~/.config/bash/omarchy/init
+[[ $- == *i* ]] && bind -f ~/.config/bash/omarchy/inputrc
