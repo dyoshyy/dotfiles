@@ -34,7 +34,8 @@
 #battery,
 #pulseaudio,
 #custom-omarchy,
-#custom-update {
+#custom-update,
+#custom-nightlight {
   min-width: 12px;
   margin: 0 7.5px;
 }

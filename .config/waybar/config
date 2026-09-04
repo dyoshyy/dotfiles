@@ -19,6 +19,7 @@
     "cpu",
     "battery",
     "custom/weather",
+    "custom/nightlight",
     "clock",
     "custom/notification"
   ],
@@ -74,7 +75,7 @@
     "on-click-right": "alacritty"
   },
   "clock": {
-    "format": "{:L%A %H:%M}",
+    "format": "{:L%m/%d (%a) %I:%M %p}",
     "format-alt": "{:L%d %B W%V %Y}",
     "tooltip": false,
     "on-click-right": "omarchy-launch-floating-terminal-with-presentation omarchy-tz-select"
@@ -173,6 +174,12 @@
     "on-click": "omarchy-toggle-notification-silencing",
     "exec": "~/.config/waybar/scripts/indicators/notification-silencing.sh",
     "signal": 10,
+    "return-type": "json"
+  },
+  "custom/nightlight": {
+    "on-click": "omarchy-toggle-nightlight",
+    "exec": "~/.config/waybar/scripts/indicators/nightlight.sh",
+    "interval": 60,
     "return-type": "json"
   },
   "custom/voxtype": {

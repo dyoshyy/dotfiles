@@ -1,6 +1,6 @@
-alias ls 'ls -lFh --color=auto' # lsを見やすくする
-alias la 'ls -A' # 隠しファイルを含めて表示
-alias ll 'ls -lA' # 詳細表示
+alias ls 'eza --icons --group-directories-first'
+alias la 'eza --icons --group-directories-first -a'
+alias ll 'eza --icons --group-directories-first -la'
 
 # git
 alias gl 'git log --oneline --graph --decorate'
