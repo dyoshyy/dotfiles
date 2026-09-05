@@ -1,0 +1,79 @@
+{
+  "bar": {
+    "centerAnchor": "omarchy.workspaces",
+    "layout": {
+      "left": [
+        {
+          "id": "omarchy.indicators",
+          "items": ["Dictation", "ScreenRecording", "StayAwake", "Dnd"],
+          "alwaysShow": true
+        }
+      ],
+      "center": [
+        {
+          "id": "omarchy.workspaces"
+        }
+      ],
+      "right": [
+        {
+          "id": "omarchy.system-update"
+        },
+        {
+          "id": "omarchy.tray"
+        },
+        {
+          "id": "omarchy.bluetooth"
+        },
+        {
+          "id": "omarchy.network"
+        },
+        {
+          "id": "omarchy.audio"
+        },
+        {
+          "id": "omarchy.monitor"
+        },
+        {
+          "id": "cpu",
+          "type": "command",
+          "exec": "~/.config/omarchy/bar/scripts/cpu-icon.sh",
+          "interval": 5,
+          "tooltip": "CPU",
+          "onClick": "omarchy-launch-or-focus-tui btop"
+        },
+        {
+          "id": "omarchy.power"
+        },
+        {
+          "id": "omarchy.weather"
+        },
+        {
+          "id": "omarchy.indicators",
+          "items": ["NightLight"],
+          "alwaysShow": true
+        },
+        {
+          "id": "omarchy.clock",
+          "format": "MM/dd (ddd) hh:mm AP",
+          "formatAlt": "d MMMM 'W'ww yyyy",
+          "verticalFormat": "hh\n—\nmm"
+        },
+        {
+          "id": "notifications",
+          "type": "command",
+          "exec": "~/.config/omarchy/bar/scripts/notifications-bell.sh",
+          "tooltip": "Notifications",
+          "onClick": "omarchy-shell notifications showHistory"
+        }
+      ]
+    },
+    "position": "top",
+    "transparent": false
+  },
+  "idle": {
+    "lock": 300,
+    "screensaver": 150
+  },
+  "plugins": [],
+  "version": 1
+}
